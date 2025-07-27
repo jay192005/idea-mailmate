@@ -1,11 +1,9 @@
 import streamlit as st
 import google.generativeai as genai
 
-# Configure the Gemini API with your API key
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-# Initialize the Gemini model
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("models/gemini-pro")  # Corrected model name
 
 def generate_email_response(email_text, tone):
     prompt = f"""
@@ -16,6 +14,5 @@ Email:
 
 Reply:
 """
-    # Generate the response using Gemini
     response = model.generate_content(prompt)
     return response.text
